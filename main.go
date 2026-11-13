@@ -6,8 +6,8 @@
 //     is set on the app's page in Lift
 //   - anyone who is signed in can edit the article
 //
-// Lift gives the container PORT, APP_URL, LIFT_ISSUER and LIFT_CLIENT_ID.
-// You add LIFT_CLIENT_SECRET (generated on the app's page in Lift).
+// Lift gives the container PORT, APP_URL, LIFT_ISSUER, LIFT_CLIENT_ID and
+// LIFT_CLIENT_SECRET, so there is nothing to configure.
 package main
 
 import (
@@ -103,7 +103,7 @@ func main() {
 	mux.HandleFunc("GET /auth/logout", a.logout)
 
 	if !a.loginConfigured() {
-		log.Print("sign-in is off: set LIFT_CLIENT_SECRET (and deploy on Lift for LIFT_ISSUER / LIFT_CLIENT_ID)")
+		log.Print("sign-in is off: LIFT_ISSUER, LIFT_CLIENT_ID and LIFT_CLIENT_SECRET are not all set (Lift sets them on deploy)")
 	}
 
 	log.Printf("demo-blog listening on :%s (%s)", cfg.port, cfg.appURL)
